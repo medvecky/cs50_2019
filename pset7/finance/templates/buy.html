@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+<form action="/buy" method="post">
+        {% if not value %}
+            <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control"
+                name="symbol" placeholder="Symbol" type="text">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" class="form-control" min="1"
+                    name="shares" placeholder="Shares" type="number">
+            </div>
+        {% else %}
+             <div class="form-group">
+            <input autocomplete="off"  class="form-control"
+                name="symbol" placeholder="Symbol" type="text" value="{{ value }}">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" class="form-control" autofocus min="1"
+                    name="shares" placeholder="Shares" type="number">
+            </div>
+        {% endif %}
+    <button class="btn btn-primary" type="submit">Buy</button>
+</form>
+{% endblock %}

@@ -1,0 +1,52 @@
+<table class="table table-sm">
+    <thead>
+        {% for row in range(2) %}
+            <tr>
+                {% for col in range(s2|length + 3) %}
+                        {% if row == 0 %}
+                            {% if col < 3 %}
+                                <th></th>
+                            {% else %}
+                                <th>
+                                    {{ s2[col-3:col-2] }}
+                                </th>
+                            {% endif %}
+                        {% elif row == 1 %}
+                            {% if col < 2 %}
+                                <th></th>
+                            {% else %}
+                                <th>
+                                    {{ col - 2 }}
+                                </th>
+                            {% endif %}
+                        {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </thead>
+    <body>
+        {% for row in range(s1|length + 1) %}
+            <tr>
+                {% for col in range(s2|length + 3) %}
+                    {% if col == 0 %}
+                        {% if row == 0 %}
+                            <th></th>
+                        {% else %}
+                            <th>
+                                {{ s1[row - 1:row] }}
+                            </th>
+                        {% endif %}
+                    {% elif col == 1 %}
+                        <th>
+                            {{ row }}
+                        </th>
+                    {% else %}
+                        <th>
+                            {{ matrix[row][col - 2][0] }}
+                        </th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </body>
+</table>

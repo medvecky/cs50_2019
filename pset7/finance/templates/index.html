@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+            <th>ACTION</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="4"></td>
+            <td colspan="2">{{ grandBalance }}</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock["symbol"] }}</td>
+                <td>{{ stock["name"] }}</td>
+                <td>{{ stock["numberofshares"] }}</td>
+                <td>{{ stock["price"] | usd }}</td>
+                <td>{{ ((stock["price"]) * (stock["numberofshares"])) | usd }}</td>
+                <td>
+                    <div class="side-button-wrapper">
+                        <div><a class="btn btn-primary btn-one" role="button" href="/buy?symbol={{ stock["symbol"]}}">Buy</a></div>
+                        <div><a class="btn btn-primary btn-two" role="button" href="/sell?symbol={{ stock["symbol"]}}">Sell</a></div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        <td colspan="4">CASH</td>
+        <td colspan="1">{{ userBalance }}</td>
+        <td><div><a class="btn btn-primary" role="button" href="/add_cash">Add cash</a></div></td>
+    </tbody>
+</table>
+{% endblock %}
